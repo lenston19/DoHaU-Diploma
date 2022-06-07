@@ -6,9 +6,9 @@
 
         <q-toolbar-title>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+            <q-icon name="las la-home" size="2rem"></q-icon>
           </q-avatar>
-          Title
+          Товарищество собственников жилья
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -57,8 +57,8 @@ const links = [
     url: '/login',
   },
   {
-    name: 'Логин',
-    url: '/login',
+    name: 'Клиентская база',
+    url: '/clients',
   },
   {
     name: 'Логин',
