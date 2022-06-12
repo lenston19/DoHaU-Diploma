@@ -65,11 +65,11 @@ const mainLinks = [
   },
   {
     name: 'Организации',
-    url: '/',
+    url: '/organization',
   },
   {
     name: 'Филиалы',
-    url: '/',
+    url: '/branches',
   },
 ];
 const premisesLinks = [

@@ -1,10 +1,14 @@
 <template>
   <q-page class="q-container">
-    <q-btn @click="isCreate = true">Добавить</q-btn>
-    <div class="row q-mt-md justify-center">
+    <div class="row q-my-md">
+      <div class="col-12 col-lg-4">
+        <q-btn color="primary" @click="isCreate = true">Добавить</q-btn>
+      </div>
+    </div>
+    <div class="row q-my-md justify-center">
       <div class="col-12 col-lg-12">
         <q-table
-          style="height: 400px;"
+          style="min-height: 400px; height: fit-content"
           title="Клиентская база"
           :rows="rows"
           :columns="columns"
@@ -15,28 +19,29 @@
           <template v-slot:body-cell-action="props">
             <q-td :props="props">
               <q-btn
+                color="orange"
                 dense
                 round
                 flat
-                color="grey"
                 @click="(editableId = props.row.id), (isEdit = true)"
                 icon="las la-pencil-alt"
               ></q-btn>
               <q-btn
                 dense
+                color="red"
                 round
                 @click="deleteById(props.row.id)"
                 flat
-                color="grey"
                 icon="las la-trash"
-              ></q-btn>
+              >
+              </q-btn>
             </q-td>
           </template>
         </q-table>
       </div>
     </div>
     <q-dialog v-model="isCreate">
-      <q-card>
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Создать</div>
         </q-card-section>
@@ -50,7 +55,7 @@
               :key="field.name"
             >
               <p>{{ field.label }}</p>
-              <input :name="field.name" />
+              <input class="full-width q-mb-md q-pa-sm" :name="field.name" />
             </template>
           </form>
         </q-card-section>
@@ -59,15 +64,16 @@
           <q-btn
             @click="create($refs.createForm)"
             flat
-            label="OK"
-            color="primary"
+            label="Создать"
+            class="bg-green"
+            color="white"
             v-close-popup
           />
         </q-card-actions>
       </q-card>
     </q-dialog>
     <q-dialog v-model="isEdit">
-      <q-card>
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Редактировать</div>
         </q-card-section>
@@ -82,6 +88,7 @@
             >
               <p>{{ field.label }}</p>
               <input
+                class="full-width q-mb-md"
                 :value="rows.filter((r) => r.id === editableId)[0][field.name]"
                 :name="field.name"
               />
@@ -93,8 +100,9 @@
           <q-btn
             @click="updateById(editableId, $refs.updateForm)"
             flat
-            label="OK"
-            color="primary"
+            label="Изменить"
+            class="bg-orange"
+            color="white"
             v-close-popup
           />
         </q-card-actions>
@@ -197,7 +205,8 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res = await graphqlRequest(`mutation updateUser($id: Int!, $userInput: UserDataInput!){
+  const res =
+    await graphqlRequest(`mutation updateUser($id: Int!, $userInput: UserDataInput!){
       updateUser(id:${id}, userInput:{name:" ${updatedData.name}",email: "${updatedData.email}",phoneNumber: "${updatedData.phoneNumber}",birthDate: "${updatedData.birthDate}",address: "${updatedData.address}",orgId: ${updatedData.orgId}})
     }`);
   console.log(res);

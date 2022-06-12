@@ -2,6 +2,12 @@ import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
+    name: 'login',
+    path: '/',
+    component: () => import('layouts/EmptyLayout.vue'),
+    children: [{ path: '', component: () => import('pages/LoginPage.vue') }],
+  },
+  {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
@@ -11,18 +17,23 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/IndexPage.vue'),
       },
       {
-        name: 'clientBase',
-        path: '/client-base',
-        component: () => import('pages/ClientsBase.vue'),
+        name: 'clients',
+        path: '/clients',
+        component: () => import('src/pages/ClientsPage.vue'),
+      },
+      {
+        name: 'organization',
+        path: '/organization',
+        component: () => import('src/pages/ClientsPage.vue'),
+      },
+      {
+        name: 'branches',
+        path: '/branches',
+        component: () => import('src/pages/ClientsPage.vue'),
       },
     ],
   },
-  {
-    name: 'login',
-    path: '/',
-    component: () => import('layouts/EmptyLayout.vue'),
-    children: [{ path: '', component: () => import('pages/LoginPage.vue') }],
-  },
+
 
   {
     path: '/:catchAll(.*)*',
