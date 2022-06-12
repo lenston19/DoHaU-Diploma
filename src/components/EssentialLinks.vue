@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { navigationLinks } from 'types/index'
+import { NavigationLinks } from 'types/index'
 
 defineProps<{
-  links: navigationLinks[]
+  links: NavigationLinks[]
 }>()
 
 </script>
