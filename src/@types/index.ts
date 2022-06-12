@@ -116,8 +116,8 @@ export interface User {
   birthDate: string;
   address: string;
   orgId: number;
-  refreshToken: string;
-  accessToken: string;
+  refreshToken?: string;
+  accessToken?: string;
 }
 
 export interface UserApartment {

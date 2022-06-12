@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-
+import { useClientBase } from 'src/hooks/useClientBase';
 const routes: RouteRecordRaw[] = [
   {
     name: 'index',
@@ -14,11 +14,15 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('pages/LoginPage.vue') }],
   },
   {
-    name: 'table',
-    path: '/:table',
+    name: 'clientBase',
+    path: '/client-base',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/PageWithTable.vue') },
+      {
+        path: '',
+        component: () => import('pages/PageWithTable.vue'),
+        props: { worker: useClientBase },
+      },
     ],
   },
   {
