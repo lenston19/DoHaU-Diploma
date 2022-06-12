@@ -37,5 +37,12 @@ npm run format
 quasar build
 ```
 
+## Login and Password
+```bash
+dpapkovskiy@mail.ru
+
+test123
+```
+
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
