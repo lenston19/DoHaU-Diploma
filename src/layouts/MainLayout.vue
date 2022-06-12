@@ -13,27 +13,28 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      side="left"
-      overlay
-      behavior="mobile"
-      class="bg-primary"
-    >
-      <div class="text-h5 text-center text-secondary q-my-md">
-        Филиал
-        <i class="las la-angle-down"></i>
+    <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="mobile" class="bg-primary text-white">
+      <div class="text-h5 text-center text-white q-my-md">
+        Навигация
       </div>
-      <q-list>
-        <q-item v-for="link in links" :key="link.name" :to="link.url" clickable>
-          <q-item-section class="text-secondary text-h6">{{
-            link.name
-          }}</q-item-section>
-          <q-item-section avatar>
-            <q-icon color="secondary" name="las la-arrow-left" />
-          </q-item-section>
-        </q-item>
-      </q-list>
+      <q-separator />
+      <EssentialLinks :links="mainLinks" />
+      <div class="text-h5 text-center text-white q-my-md">
+        Помещения
+      </div>
+      <EssentialLinks :links="premisesLinks" />
+      <div class="text-h5 text-center text-white q-my-md">
+        Услуги
+      </div>
+      <EssentialLinks :links="servicesLinks" />
+      <div class="text-h5 text-center text-white q-my-md">
+        Сотрудники
+      </div>
+      <EssentialLinks :links="employeesLinks" />
+      <div class="text-h5 text-center text-white q-my-md">
+        Счётчики
+      </div>
+      <EssentialLinks :links="countersLinks" />
     </q-drawer>
 
     <q-page-container>
@@ -44,6 +45,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import EssentialLinks from 'src/components/EssentialLinks.vue';
 
 const leftDrawerOpen = ref(false);
 
@@ -51,30 +53,74 @@ const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
 
-const links = [
+const mainLinks = [
   {
-    name: 'Логин',
-    url: '/login',
+    name: 'Главная страница',
+    url: '/main',
   },
   {
     name: 'Клиентская база',
     url: '/clients',
   },
   {
-    name: 'Логин',
+    name: 'Организации',
+    url: '/',
+  },
+  {
+    name: 'Филиалы',
+    url: '/',
+  },
+];
+const premisesLinks = [
+  {
+    name: 'Помещения',
+    url: '/',
+  },
+  {
+    name: 'Владельцы помещений',
+    url: '/',
+  }
+];
+const servicesLinks = [
+  {
+    name: 'Услуги',
     url: '/login',
   },
   {
-    name: 'Логин',
-    url: '/login',
+    name: 'Категории услуг',
+    url: '/',
   },
   {
-    name: 'Логин',
-    url: '/login',
+    name: 'Стоимость услуг',
+    url: '/',
   },
   {
-    name: 'Логин',
-    url: '/login',
+    name: 'Заявки на услуги',
+    url: '/',
+  },
+];
+const employeesLinks = [
+  {
+    name: 'Сотрудники',
+    url: '/',
+  },
+  {
+    name: 'Должности',
+    url: '/',
+  },
+];
+const countersLinks = [
+  {
+    name: 'Счётчики',
+    url: '/',
+  },
+  {
+    name: 'Категории счётчиков',
+    url: '/',
+  },
+  {
+    name: 'Показания счётчиков',
+    url: '/',
   },
 ];
 </script>
