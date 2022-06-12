@@ -1,11 +1,21 @@
 import { RouteRecordRaw } from 'vue-router';
-import { useClientBase } from 'src/hooks/useClientBase';
+
 const routes: RouteRecordRaw[] = [
   {
-    name: 'index',
-    path: '/main',
+    path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
+      {
+        name: 'index',
+        path: 'main',
+        component: () => import('pages/IndexPage.vue'),
+      },
+      {
+        name: 'clientBase',
+        path: '/client-base',
+        component: () => import('pages/ClientsBase.vue'),
+      },
+    ],
   },
   {
     name: 'login',
@@ -13,18 +23,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/EmptyLayout.vue'),
     children: [{ path: '', component: () => import('pages/LoginPage.vue') }],
   },
-  {
-    name: 'clientBase',
-    path: '/client-base',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('pages/PageWithTable.vue'),
-        props: { worker: useClientBase },
-      },
-    ],
-  },
+
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
