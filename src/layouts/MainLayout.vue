@@ -8,7 +8,8 @@
           <q-avatar>
             <q-icon name="las la-home" size="2rem"></q-icon>
           </q-avatar>
-          Товарищество собственников жилья
+          <template v-if="$q.screen.lt.sm">ТСЖ</template>
+          <template v-else>Товарищество собственников жилья</template>
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
