@@ -2,22 +2,25 @@
   <q-page class="q-container">
     <div class="row auth-row justify-center items-center">
       <div class="col-12 col-sm-8 col-md-6">
-        <q-card bordered class="auth-card q-pa-md">
-          <q-card-section>
-            <div class="text-h4 text-bold">Вход</div>
-          </q-card-section>
+        <q-form @submit="auth()">
+          <q-card bordered class="auth-card q-pa-md">
+            <q-card-section>
+              <div class="text-h4 text-bold">Вход</div>
+            </q-card-section>
 
-          <q-card-section class="q-pa-sm">
-            <q-input outlined v-model="login" :rules="[(val) => !!val || 'Поле обязательное для заполнения']"
-              label="Номер телефона или Email" class="q-mb-sm" />
-            <q-input type="password" outlined v-model="password"
-              :rules="[(val) => !!val || 'Поле обязательное для заполнения']" label="Пароль" />
-          </q-card-section>
+            <q-card-section class="q-pa-sm">
+              <q-input outlined v-model="login" :rules="[(val) => !!val || 'Поле обязательное для заполнения']"
+                label="Номер телефона или Email" class="q-mb-sm" />
+              <q-input type="password" outlined v-model="password"
+                :rules="[(val) => !!val || 'Поле обязательное для заполнения']" label="Пароль" />
+            </q-card-section>
 
-          <q-card-actions>
-            <q-btn label="Войти" color="accent" @click="auth()" class="full-width q-pa-md" />
-          </q-card-actions>
-        </q-card>
+            <q-card-actions>
+              <q-btn label="Войти" color="accent" type="submit" class="full-width q-pa-md" />
+            </q-card-actions>
+          </q-card>
+        </q-form>
+
       </div>
     </div>
   </q-page>
