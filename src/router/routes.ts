@@ -52,6 +52,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/pages/CountersTypePage.vue'),
       },
       {
+        name: 'counters-readings',
+        path: '/counters-readings',
+        component: () => import('src/pages/CountersReadingsPage.vue'),
+      },
+      {
         name: 'apartaments',
         path: '/apartaments',
         component: () => import('src/pages/ApartamentsPage.vue'),
@@ -75,6 +80,11 @@ const routes: RouteRecordRaw[] = [
         name: 'servicesPrice',
         path: '/services-price',
         component: () => import('src/pages/ServicesPricePage.vue'),
+      },
+      {
+        name: 'serviceRecord',
+        path: '/services-record',
+        component: () => import('src/pages/ServiceRecordPage.vue'),
       },
     ],
   },

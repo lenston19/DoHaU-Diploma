@@ -85,7 +85,7 @@ const servicesLinks = [
   },
   {
     name: 'Категории услуг',
-    url: '/',
+    url: '/services-category',
   },
   {
     name: 'Стоимость услуг',
@@ -93,7 +93,7 @@ const servicesLinks = [
   },
   {
     name: 'Заявки на услуги',
-    url: '/',
+    url: '/services-record',
   },
 ];
 const employeesLinks = [
@@ -117,7 +117,7 @@ const countersLinks = [
   },
   {
     name: 'Показания счётчиков',
-    url: '/',
+    url: '/counters-readings',
   },
 ];
 </script>
