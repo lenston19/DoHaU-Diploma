@@ -9,7 +9,7 @@
       <div class="col-12 col-lg-12">
         <q-table
           style="min-height: 400px; height: fit-content"
-          title="Филиалы"
+          title="Должности"
           :rows="rows"
           :columns="columns"
           row-key="id"
@@ -127,43 +127,8 @@ const columns = [
   {
     name: 'name',
     align: 'center',
-    label: 'Наименование организации',
+    label: 'Должность',
     field: 'name',
-    sortable: true,
-  },
-  {
-    name: 'country',
-    align: 'center',
-    label: 'Страна',
-    field: 'country',
-    sortable: true,
-  },
-  {
-    name: 'city',
-    align: 'center',
-    label: 'Город',
-    field: 'city',
-    sortable: true,
-  },
-  {
-    name: 'address',
-    align: 'center',
-    label: 'Адрес',
-    field: 'address',
-    sortable: true,
-  },
-  {
-    name: 'phoneNumber',
-    align: 'center',
-    label: 'Телефон',
-    field: 'phoneNumber',
-    sortable: true,
-  },
-  {
-    name: 'orgId',
-    align: 'center',
-    label: 'Организация',
-    field: 'orgId',
     sortable: true,
   },
   {
@@ -179,21 +144,16 @@ const editableId = ref();
 
 const read = async () => {
   const response = await graphqlRequest(`query {
-      showBranch {
+      showPosition {
         id
         name
-        country
-        city
-        address
-        phoneNumber
-        orgId
       }
   }`);
-  rows.value = response.data.showBranch;
+  rows.value = response.data.showPosition;
 };
 const deleteById = async (id: number) => {
-  await graphqlRequest(`mutation deleteBranch{
-      deleteBranch(id:${id})
+  await graphqlRequest(`mutation deletePosition{
+      deletePosition(id:${id})
     }`);
   await read();
 };
@@ -206,8 +166,8 @@ const updateById = async (id: number, form: any) => {
     };
   });
   const res =
-    await graphqlRequest(`mutation updateBranch($id: Int!, $input: BranchDataInput!){
-      updateBranch(id:${id}, input:{name:" ${updatedData.name}",country: "${updatedData.country}",city: "${updatedData.city}",address: "${updatedData.address}",phoneNumber: "${updatedData.phoneNumber}",orgId: ${updatedData.orgId}})
+    await graphqlRequest(`mutation updatePosition($id: Int!, $positionInput: PositionDataInput!){
+      updatePosition(id:${id}, positionInput:{name:" ${updatedData.name}"})
     }`);
   console.log(res);
   editableId.value = undefined;
@@ -222,15 +182,10 @@ const create = async (form: any) => {
     };
   });
   let q = `mutation
-      createBranch($input: BranchDataInput!){
-      createBranch(
+      createPosition($input: EmployeeDataInput!){
+      createPosition(
         input: {
-        name:" ${newData.name}",
-        country: "${newData.country}",
-        city: "${newData.city}",
-        address: "${newData.address}",
-        phoneNumber: "${newData.phoneNumber}",
-        orgId: ${newData.orgId}
+        name:" ${newData.name}"
         })
     }`;
 

@@ -14,27 +14,23 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="mobile" class="bg-primary text-white">
-      <div class="text-h5 text-center text-white q-my-md">
-        Навигация
-      </div>
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="left"
+      overlay
+      behavior="mobile"
+      class="bg-primary text-white"
+    >
+      <div class="text-h5 text-center text-white q-my-md">Навигация</div>
       <q-separator />
       <EssentialLinks :links="mainLinks" />
-      <div class="text-h5 text-center text-white q-my-md">
-        Помещения
-      </div>
+      <div class="text-h5 text-center text-white q-my-md">Помещения</div>
       <EssentialLinks :links="premisesLinks" />
-      <div class="text-h5 text-center text-white q-my-md">
-        Услуги
-      </div>
+      <div class="text-h5 text-center text-white q-my-md">Услуги</div>
       <EssentialLinks :links="servicesLinks" />
-      <div class="text-h5 text-center text-white q-my-md">
-        Сотрудники
-      </div>
+      <div class="text-h5 text-center text-white q-my-md">Сотрудники</div>
       <EssentialLinks :links="employeesLinks" />
-      <div class="text-h5 text-center text-white q-my-md">
-        Счётчики
-      </div>
+      <div class="text-h5 text-center text-white q-my-md">Счётчики</div>
       <EssentialLinks :links="countersLinks" />
     </q-drawer>
 
@@ -80,7 +76,7 @@ const premisesLinks = [
   {
     name: 'Владельцы помещений',
     url: '/',
-  }
+  },
 ];
 const servicesLinks = [
   {
@@ -103,11 +99,11 @@ const servicesLinks = [
 const employeesLinks = [
   {
     name: 'Сотрудники',
-    url: '/',
+    url: '/employees',
   },
   {
     name: 'Должности',
-    url: '/',
+    url: '/positions',
   },
 ];
 const countersLinks = [
