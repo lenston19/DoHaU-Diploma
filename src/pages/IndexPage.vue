@@ -51,7 +51,7 @@ const links = [
     name: 'Услуги',
   },
   {
-    url: '/',
+    url: '/apartaments',
     name: 'Помещения',
   },
   {

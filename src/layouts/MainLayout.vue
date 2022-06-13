@@ -71,11 +71,11 @@ const mainLinks = [
 const premisesLinks = [
   {
     name: 'Помещения',
-    url: '/',
+    url: '/apartaments',
   },
   {
     name: 'Владельцы помещений',
-    url: '/',
+    url: '/user-apartaments',
   },
 ];
 const servicesLinks = [
