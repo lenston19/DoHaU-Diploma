@@ -9,7 +9,7 @@
       <div class="col-12 col-lg-12">
         <q-table
           style="min-height: 400px; height: fit-content;"
-          title="Услуги"
+          title="Категории услуг"
           :rows="rows"
           :columns="columns"
           row-key="id"
@@ -132,41 +132,6 @@ const columns = [
     sortable: true,
   },
   {
-    name: 'customWork',
-    align: 'center',
-    label: 'Заказная/не заказная',
-    field: 'customWork',
-    sortable: true,
-  },
-  {
-    name: 'description',
-    align: 'center',
-    label: 'Описание',
-    field: 'description',
-    sortable: true,
-  },
-  {
-    name: 'categoryId',
-    align: 'center',
-    label: 'Номер категории',
-    field: 'categoryId',
-    sortable: true,
-  },
-  {
-    name: 'measureRefId',
-    align: 'center',
-    label: 'Номер единицы измерения',
-    field: 'measureRefId',
-    sortable: true,
-  },
-  {
-    name: 'positionId',
-    align: 'center',
-    label: 'Номер сотрудника',
-    field: 'positionId',
-    sortable: true,
-  },
-  {
     name: 'action',
     align: 'center',
     label: 'Действие',
@@ -179,21 +144,16 @@ const editableId = ref();
 
 const read = async () => {
   const response = await graphqlRequest(`query {
-      showService {
+      showCategory {
         id
-        customWork
-        description
         name
-        measureRefId
-        categoryId
-        positionId
       }
   }`);
-  rows.value = response.data.showService;
+  rows.value = response.data.showCategory;
 };
 const deleteById = async (id: number) => {
-  await graphqlRequest(`mutation deleteService{
-      deleteService(id:${id})
+  await graphqlRequest(`mutation deleteCategory{
+      deleteCategory(id:${id})
     }`);
   await read();
 };
@@ -205,8 +165,8 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res = await graphqlRequest(`mutation updateService($id: Int!, $input: ServiceDataInput!){
-      updateService(id:${id}, input:{name: "${updatedData.name}",customWork: ${updatedData.customWork},description: "${updatedData.description}",positionId: ${updatedData.positionId},measureRefId: ${updatedData.measureRefId},categoryId: ${updatedData.categoryId}})
+  const res = await graphqlRequest(`mutation updateCategory($id: Int!, $input: CategoryDataInput!){
+      updateCategory(id:${id}, input:{name: "${updatedData.name}"})
     }`);
   console.log(res);
   editableId.value = undefined;
@@ -221,15 +181,10 @@ const create = async (form: any) => {
     };
   });
   let q = `mutation
-      createService($input:ServiceDataInput!){
-      createService(
+      createCategory($input:CategoryDataInput!){
+      createCategory(
         input: {
-        name: "${newData.name}",
-        customWork: ${newData.customWork},
-        description: "${newData.description}",
-        positionId: ${newData.positionId},
-        measureRefId: ${newData.measureRefId},
-        categoryId: ${newData.categoryId}
+        name: "${newData.name}"
         })
     }`;
   console.log(q);
