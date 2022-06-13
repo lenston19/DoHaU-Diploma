@@ -89,7 +89,7 @@ const servicesLinks = [
   },
   {
     name: 'Стоимость услуг',
-    url: '/',
+    url: '/services-price',
   },
   {
     name: 'Заявки на услуги',
