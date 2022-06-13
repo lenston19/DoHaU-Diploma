@@ -113,7 +113,7 @@ const countersLinks = [
   },
   {
     name: 'Категории счётчиков',
-    url: '/',
+    url: '/counters-type',
   },
   {
     name: 'Показания счётчиков',
