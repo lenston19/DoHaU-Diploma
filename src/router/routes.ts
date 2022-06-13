@@ -52,6 +52,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/pages/CountersTypePage.vue'),
       },
       {
+        name: 'counters-readings',
+        path: '/counters-readings',
+        component: () => import('src/pages/CountersReadingsPage.vue'),
+      },
+      {
         name: 'apartaments',
         path: '/apartaments',
         component: () => import('src/pages/ApartamentsPage.vue'),

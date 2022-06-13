@@ -117,7 +117,7 @@ const countersLinks = [
   },
   {
     name: 'Показания счётчиков',
-    url: '/',
+    url: '/counters-readings',
   },
 ];
 </script>
