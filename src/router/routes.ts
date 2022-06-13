@@ -76,6 +76,11 @@ const routes: RouteRecordRaw[] = [
         path: '/services-category',
         component: () => import('src/pages/ServicesCategoryPage.vue'),
       },
+      {
+        name: 'serviceRecord',
+        path: '/services-record',
+        component: () => import('src/pages/ServiceRecordPage.vue'),
+      },
     ],
   },
 
