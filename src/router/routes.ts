@@ -51,9 +51,18 @@ const routes: RouteRecordRaw[] = [
         path: '/services',
         component: () => import('src/pages/ServicesPage.vue'),
       },
+      {
+        name: 'apartaments',
+        path: '/apartaments',
+        component: () => import('src/pages/ApartamentsPage.vue'),
+      },
+      {
+        name: 'userApartaments',
+        path: '/user-apartaments',
+        component: () => import('src/pages/UserApartmentsPage.vue'),
+      },
     ],
   },
-
 
   {
     path: '/:catchAll(.*)*',
