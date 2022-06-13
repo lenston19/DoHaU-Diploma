@@ -47,7 +47,7 @@ const links = [
     name: 'Сотрудники',
   },
   {
-    url: '/',
+    url: '/services',
     name: 'Услуги',
   },
   {
@@ -59,7 +59,7 @@ const links = [
     name: 'Филиалы',
   },
   {
-    url: '/',
+    url: '/counters',
     name: 'Счётчики',
   },
 ];

@@ -81,7 +81,7 @@ const premisesLinks = [
 const servicesLinks = [
   {
     name: 'Услуги',
-    url: '/login',
+    url: '/services',
   },
   {
     name: 'Категории услуг',
@@ -109,7 +109,7 @@ const employeesLinks = [
 const countersLinks = [
   {
     name: 'Счётчики',
-    url: '/',
+    url: '/counters',
   },
   {
     name: 'Категории счётчиков',
