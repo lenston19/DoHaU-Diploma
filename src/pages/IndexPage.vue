@@ -49,7 +49,7 @@ const links = [
     name: 'Помещения'
   },
   {
-    url: '/',
+    url: '/branches',
     name: 'Филиалы'
   },
   {

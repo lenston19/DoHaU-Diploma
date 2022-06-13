@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'branches',
         path: '/branches',
-        component: () => import('src/pages/ClientsPage.vue'),
+        component: () => import('src/pages/BranchesPage.vue'),
       },
     ],
   },
