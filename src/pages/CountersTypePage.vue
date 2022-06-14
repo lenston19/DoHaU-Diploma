@@ -149,7 +149,7 @@ const read = async () => {
         name
       }
   }`);
-  rows.value = response.data.showEmployee;
+  rows.value = response.data.showType;
 };
 const deleteById = async (id: number) => {
   await graphqlRequest(`mutation deleteType{
@@ -166,8 +166,8 @@ const updateById = async (id: number, form: any) => {
     };
   });
   const res =
-    await graphqlRequest(`mutation updateType($id: Int!, $input: TypeDataInput!){
-      updateType(id:${id}, input:{name:" ${updatedData.name}"})
+    await graphqlRequest(`mutation updateType($id: Int!, $typeInput: TypeDataInput!){
+      updateType(id:${id}, typeInput:{name:" ${updatedData.name}"})
     }`);
   console.log(res);
   editableId.value = undefined;
@@ -182,9 +182,9 @@ const create = async (form: any) => {
     };
   });
   let q = `mutation
-      createType($input: TypeDataInput!){
+      createType($typeInput: TypeDataInput!){
       createType(
-        input: {
+        typeInput: {
         name:" ${newData.name}"
         })
     }`;
