@@ -139,6 +139,12 @@ const columns = [
     sortable: true,
   },
   {
+    name: 'password',
+    align: 'center',
+    label: 'Пароль',
+    field: 'password',
+  },
+  {
     name: 'phoneNumber',
     align: 'center',
     label: 'Телефон',
@@ -183,6 +189,7 @@ const read = async () => {
         id
         name
         email
+        password
         phoneNumber
         birthDate
         address
@@ -205,15 +212,24 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res =
-    await graphqlRequest(`mutation updateUser($id: Int!, $userInput: UserDataInput!){
-      updateUser(id:${id}, userInput:{name:" ${updatedData.name}",email: "${updatedData.email}",phoneNumber: "${updatedData.phoneNumber}",birthDate: "${updatedData.birthDate}",address: "${updatedData.address}",orgId: ${updatedData.orgId}})
-    }`);
+  const res = await graphqlRequest(`mutation{
+  updateUser(
+    id: ${id},
+    name:" ${updatedData.name}",
+    email: "${updatedData.email}",
+    password: "${updatedData.password}",
+    phoneNumber: "${updatedData.phoneNumber}",
+    birthDate: "${updatedData.birthDate}",
+    address: "${updatedData.address}",
+    orgId: ${updatedData.orgId})
+}`);
   console.log(res);
   editableId.value = undefined;
   await read();
 };
 const create = async (form: any) => {
+  console.log('Hello there');
+
   let newData = {};
   new FormData(form).forEach((val, key) => {
     newData = {
@@ -222,9 +238,14 @@ const create = async (form: any) => {
     };
   });
   let q = `mutation createUser($userInput: UserDataInput!){
-      createUser(userInput:{name:" ${newData.name}",email: "${newData.email}",phoneNumber: "${newData.phoneNumber}",birthDate: "${newData.birthDate}",address: "${newData.address}",orgId: ${newData.orgId}})
-    }`;
-
+      createUser(userInput:{
+        name:" ${newData.name}",
+        email: "${newData.email}",
+        password: "${updatedData.password}",
+        phoneNumber: "${newData.phoneNumber}",
+        birthDate: "${newData.birthDate}",
+        address: "${newData.address}",
+        orgId: ${newData.orgId}})}`;
   const res = await graphqlRequest(q);
   console.log(res);
   await read();
