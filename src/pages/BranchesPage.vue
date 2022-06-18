@@ -205,9 +205,15 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res =
-    await graphqlRequest(`mutation updateBranch($id: Int!, $input: BranchDataInput!){
-      updateBranch(id:${id}, input:{name:" ${updatedData.name}",country: "${updatedData.country}",city: "${updatedData.city}",address: "${updatedData.address}",phoneNumber: "${updatedData.phoneNumber}",orgId: ${updatedData.orgId}})
+  const res = await graphqlRequest(`mutation{
+      updateBranch(
+        id:${id},
+        name:" ${updatedData.name}",
+        country: "${updatedData.country}",
+        city: "${updatedData.city}",
+        address: "${updatedData.address}"
+        phoneNumber: "${updatedData.phoneNumber}",
+        orgId: ${updatedData.orgId})
     }`);
   console.log(res);
   editableId.value = undefined;

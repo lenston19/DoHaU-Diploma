@@ -165,9 +165,11 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res =
-    await graphqlRequest(`mutation updatePosition($id: Int!, $positionInput: PositionDataInput!){
-      updatePosition(id:${id}, positionInput:{name:" ${updatedData.name}"})
+  const res = await graphqlRequest(`mutation{
+      updatePosition(
+        id:${id},
+        name:" ${updatedData.name}"
+      )
     }`);
   console.log(res);
   editableId.value = undefined;
