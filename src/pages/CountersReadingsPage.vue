@@ -189,10 +189,16 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res =
-    await graphqlRequest(`mutation updateReadings($id: Int!, $input: ReadingsDataInput!){
-      updateReadings(id:${id}, input:{reading:" ${updatedData.reading}",date: "${updatedData.date}",apartmentId: ${updatedData.apartmentId},counterRefId: ${updatedData.counterRefId}})
-    }`);
+  // TODO: Обновление по дебильному работает
+  const res = await graphqlRequest(`
+  mutation{
+  updateReadings(
+    id: ${id},
+    reading: ${updatedData.reading},
+    date: "${updatedData.date}",
+    apartmentId: ${updatedData.apartmentId},
+    counterRefId: ${updatedData.counterRefId}
+  )}`);
   console.log(res);
   editableId.value = undefined;
   await read();
@@ -205,11 +211,10 @@ const create = async (form: any) => {
       ...newData,
     };
   });
-  let q = `mutation
-      createReadings($input: ReadingsDataInput!){
-      createReadings(
+  let q = `mutation{
+    createReadings(
         input: {
-        reading:" ${newData.reading}",
+        reading:${newData.reading},
         date: "${newData.date}",
         apartmentId: ${newData.apartmentId},
         counterRefId: ${newData.counterRefId}
