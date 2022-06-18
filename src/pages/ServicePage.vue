@@ -8,7 +8,7 @@
     <div class="row q-my-md justify-center">
       <div class="col-12 col-lg-12">
         <q-table
-          style="min-height: 400px; height: fit-content;"
+          style="min-height: 400px; height: fit-content"
           title="Услуги"
           :rows="rows"
           :columns="columns"
@@ -41,7 +41,7 @@
       </div>
     </div>
     <q-dialog v-model="isCreate">
-      <q-card style="max-width: 600px;" class="full-width">
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Создать</div>
         </q-card-section>
@@ -73,7 +73,7 @@
       </q-card>
     </q-dialog>
     <q-dialog v-model="isEdit">
-      <q-card style="max-width: 600px;" class="full-width">
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Редактировать</div>
         </q-card-section>
@@ -205,9 +205,15 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res = await graphqlRequest(`mutation updateService($id: Int!, $input: ServiceDataInput!){
-      updateService(id:${id}, input:{name: "${updatedData.name}",customWork: ${updatedData.customWork},description: "${updatedData.description}",positionId: ${updatedData.positionId},measureRefId: ${updatedData.measureRefId},categoryId: ${updatedData.categoryId}})
-    }`);
+  const res = await graphqlRequest(`mutation{
+  updateService(
+    id: ${id},
+    name: "${updatedData.name}",
+    customWork: ${updatedData.customWork},
+    description: "${updatedData.description}",
+    positionId: ${updatedData.positionId},
+    measureRefId: ${updatedData.measureRefId},
+    categoryId: ${updatedData.categoryId})}`);
   console.log(res);
   editableId.value = undefined;
   await read();

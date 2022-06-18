@@ -197,10 +197,15 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res =
-    await graphqlRequest(`mutation updateServiceRecord($id: Int!, $input: ServiceRecordDataInput!){
-      updateServiceRecord(id:${id}, input:{registrationDate: "${updatedData.registrationDate}",status: "${updatedData.status}",userId: ${updatedData.userId},serviceId: ${updatedData.serviceId},employeeId: ${updatedData.employeeId}})
-    }`);
+  const res = await graphqlRequest(`mutation{
+  updateServiceRecord(
+    id: ${id},
+    registrationDate: "${updatedData.registrationDate}",
+    status: "${updatedData.status}",
+    userId: ${updatedData.userId},
+    serviceId: ${updatedData.serviceId},
+    employeeId: ${updatedData.employeeId})
+}`);
   console.log(res);
   editableId.value = undefined;
   await read();
@@ -214,7 +219,7 @@ const create = async (form: any) => {
     };
   });
   let q = `mutation
-      createServiceRecord($input:ServiceRecordDataInput!){
+      createServiceRecord($userInput: [serviceRecordInput]){
       createServiceRecord(
         input: {
         registrationDate: "${newData.registrationDate}",

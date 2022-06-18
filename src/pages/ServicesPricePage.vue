@@ -8,7 +8,7 @@
     <div class="row q-my-md justify-center">
       <div class="col-12 col-lg-12">
         <q-table
-          style="min-height: 400px; height: fit-content;"
+          style="min-height: 400px; height: fit-content"
           title="Стоимость услуг"
           :rows="rows"
           :columns="columns"
@@ -41,7 +41,7 @@
       </div>
     </div>
     <q-dialog v-model="isCreate">
-      <q-card style="max-width: 600px;" class="full-width">
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Создать</div>
         </q-card-section>
@@ -73,7 +73,7 @@
       </q-card>
     </q-dialog>
     <q-dialog v-model="isEdit">
-      <q-card style="max-width: 600px;" class="full-width">
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Редактировать</div>
         </q-card-section>
@@ -181,15 +181,15 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  let q = `mutation updateServiceCollection($id: Int!, $input: ServiceCollectionInput!){
-      updateServiceCollection(id:${id}, input:{branchId: ${
+  let q = `mutation{
+    updateServiceCollection(id:${id}, branchId: ${
     updatedData.branchId
   },serviceId: ${updatedData.serviceId}, cost: ${
     updatedData.cost.indexOf('.') > -1
       ? updatedData.cost
       : updatedData.cost + '.0'
-  }})
-    }`;
+  })
+  }`;
   console.log(q);
 
   const res = await graphqlRequest(q);
