@@ -8,7 +8,7 @@
     <div class="row q-my-md justify-center">
       <div class="col-12 col-lg-12">
         <q-table
-          style="min-height: 400px; height: fit-content;"
+          style="min-height: 400px; height: fit-content"
           title="Владельцы помещения"
           :rows="rows"
           :columns="columns"
@@ -41,7 +41,7 @@
       </div>
     </div>
     <q-dialog v-model="isCreate">
-      <q-card style="max-width: 600px;" class="full-width">
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Создать</div>
         </q-card-section>
@@ -73,7 +73,7 @@
       </q-card>
     </q-dialog>
     <q-dialog v-model="isEdit">
-      <q-card style="max-width: 600px;" class="full-width">
+      <q-card style="max-width: 600px" class="full-width">
         <q-card-section>
           <div class="text-h6">Редактировать</div>
         </q-card-section>
@@ -173,9 +173,12 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res = await graphqlRequest(`mutation updateUserApartment($id: Int!, $userInput: UserApartamentDataInput!){
-      updateUserApartment(id:${id}, userInput:{userId:${updatedData.userId},apartmentId: ${updatedData.apartmentId}})
-    }`);
+  const res = await graphqlRequest(`mutation{
+    updateUserApartment(
+      id: ${id},
+      userId:${updatedData.userId},
+      apartmentId: ${updatedData.apartmentId})
+  }`);
   console.log(res);
   editableId.value = undefined;
   await read();
@@ -189,14 +192,12 @@ const create = async (form: any) => {
     };
   });
   let q = `mutation
-      createUserApartment($userInput: UserApartamentDataInput!){
-      createUserApartment(
-        userInput: {
-        userId: ${newData.fullSize},
-        apartmentId: ${newData.liveSize}
-        })
+    createUserApartment($userInput: [userApartmentInput]){
+    createUserApartment(userInput: {
+      userId: ${newData.userId},
+      apartmentId: ${newData.apartmentId}
+    })
     }`;
-  console.log(q);
 
   const res = await graphqlRequest(q);
   console.log(res);

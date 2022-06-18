@@ -165,10 +165,10 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res =
-    await graphqlRequest(`mutation updateOrg($id: Int!, $orgInput: OrgDataInput!){
-      updateOrg(id:${id}, orgInput:{name:" ${updatedData.name}"})
-    }`);
+  const res = await graphqlRequest(`mutation{
+  updateOrg(
+    id: ${id},
+    name:" ${updatedData.name}")}`);
   console.log(res);
   editableId.value = undefined;
   await read();
