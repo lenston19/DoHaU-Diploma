@@ -197,9 +197,15 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  const res =
-    await graphqlRequest(`mutation updateCounterReference($id: Int!, $input: CounterReferenceDataInput!){
-      updateCounterReference(id:${id}, input:{number:" ${updatedData.number}",model: "${updatedData.model}",label: "${updatedData.label}",serviceDate: "${updatedData.serviceDate}",typeId: ${updatedData.typeId}})
+  const res = await graphqlRequest(`mutation{
+      updateCounterReference(
+        id:${id},
+        number:" ${updatedData.number}",
+        model: "${updatedData.model}",
+        label: "${updatedData.label}",
+        serviceDate: "${updatedData.serviceDate}",
+        typeId: ${updatedData.typeId}
+        )
     }`);
   console.log(res);
   editableId.value = undefined;

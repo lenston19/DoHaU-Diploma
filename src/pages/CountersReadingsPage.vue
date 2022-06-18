@@ -189,7 +189,6 @@ const updateById = async (id: number, form: any) => {
       ...updatedData,
     };
   });
-  // TODO: Обновление по дебильному работает
   const res = await graphqlRequest(`
   mutation{
   updateReadings(
